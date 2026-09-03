@@ -1,30 +1,59 @@
-# Sovip 3.1 — Premium Refactor
+# Sovip Servicces Ltda — versão 3.2
 
-# Sovip 3.0 — Refatoração completa
+Site institucional premium da Sovip Servicces, preparado para hospedagem na Vercel e integração com GitHub.
 
-## Estrutura
-- index.html
-- css/style.css
-- js/main.js
-- images/portfolio/*.svg (placeholders substituíveis)
+## Estrutura principal
 
-## O que foi refatorado
-- HTML reorganizado e sem dependências de código duplicado.
-- CSS reescrito em um único sistema de tokens, componentes e breakpoints.
-- JavaScript consolidado em módulos lógicos: menu, scroll, reveal, contadores, portfólio, modal, WhatsApp e currículo.
-- Portfólio passa a ser gerado por uma única fonte de dados.
-- Modal acessível com teclado, setas, Escape e swipe.
-- Formulário de currículo mantém submissão multipart para FormSubmit, em vez de bloquear o envio no JavaScript.
-- Formulário comercial abre WhatsApp com mensagem personalizada.
-- Layout mobile/desktop revisado.
-- Placeholders SVG evitam imagens quebradas até que as fotos reais sejam copiadas.
+- `index.html` — página principal
+- `construcao-de-casas.html` — página de construção
+- `reformas.html` — página de reformas
+- `projetos.html` — página de projetos
+- `moveis-planejados.html` — página de móveis planejados
+- `css/style.css` — estilos
+- `js/main.js` — interações, portfólio, modal e formulários
+- `images/` — imagens do site e portfólio
+- `api/enviar-formulario.js` — função Node.js para recebimento de currículos
+- `package.json` — dependências Node.js
+- `vercel.json` — cabeçalhos e cache; a função em `/api` é detectada pela Vercel automaticamente
+- `robots.txt` e `sitemap.xml` — SEO técnico
 
-## Importante sobre o currículo
-O formulário usa FormSubmit com o endereço configurado no projeto. Na primeira utilização, o serviço pode exigir confirmação do endereço de destino. O HTML sozinho não é um servidor de armazenamento.
+## Formulário Trabalhe Conosco
 
-## Como colocar fotos reais no portfólio
-Substitua os SVGs em `images/portfolio/` e altere os caminhos no array `projects` de `js/main.js`.
+O currículo é enviado por `multipart/form-data` para `/api/enviar-formulario`.
 
+Formatos aceitos: PDF, DOC, DOCX, JPG, JPEG e PNG. Limite: 10 MB.
 
-## SEO local — Sovip 3.1
-Textos revisados com linguagem simples e foco local em construtora, construção de casas, reformas, projetos, obras comerciais e móveis planejados em Água Clara-MS e região.
+O e-mail inclui nome, e-mail, telefone, área de interesse e mensagem, com o currículo anexado.
+
+## Variáveis de ambiente da Vercel
+
+Configure em **Settings → Environment Variables**:
+
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `SMTP_FROM` (opcional)
+- `SOVIP_EMAIL` — `diretoria@sovipsevicces.com.br`
+
+Nunca coloque a senha SMTP no HTML, JavaScript ou GitHub.
+
+## Deploy
+
+1. Envie os arquivos para a branch de produção do GitHub.
+2. A Vercel, já conectada ao repositório, criará um novo deployment automaticamente.
+3. Configure as variáveis SMTP na Vercel.
+4. Faça um novo deployment após salvar as variáveis.
+5. Teste o formulário com um currículo de teste.
+
+## Correções da versão 3.2
+
+- Removida a configuração `functions` que estava causando o erro de padrão não encontrado.
+- Função mantida em `api/enviar-formulario.js`, estrutura nativa para Vercel.
+- Corrigidos erros do JavaScript nas páginas internas que não possuem portfólio/modal.
+- Corrigido o ano do rodapé para funcionar apenas quando o elemento existir.
+- Incluída a área de interesse do candidato no e-mail.
+- Assunto do e-mail de currículo diferenciado de contato comercial.
+- Padronizado o e-mail exibido no site para `diretoria@sovipsevicces.com.br`.
+- Remoção do arquivo temporário do currículo após o envio.
+- Dependências e versão do projeto atualizadas para 3.2.0.

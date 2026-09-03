@@ -1,9 +1,9 @@
 {
-  "name": "sovip-3-1",
+  "name": "sovip-site",
   "private": true,
-  "version": "3.1.0",
+  "version": "3.2.0",
   "type": "module",
-  "description": "Site institucional Sovip Servicces com formulário e upload via Vercel Node.js Function",
+  "description": "Site institucional Sovip Servicces com formulário de currículo e envio por e-mail via Vercel Node.js Function",
   "dependencies": {
     "formidable": "^3.5.4",
     "nodemailer": "^7.0.6"

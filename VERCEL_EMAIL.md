@@ -1,4 +1,8 @@
-# Sovip 3.1 — Vercel + Node.js + E-mail
+## Sovip 3.2 — Deploy Vercel
+
+Esta versão usa `api/enviar-formulario.js` como função Node.js nativa da Vercel e não exige o bloco `functions` no `vercel.json`.
+
+# Sovip 3.2 — Vercel + Node.js + E-mail
 
 O formulário usa uma Vercel Function em Node.js:
 `/api/enviar-formulario.js`
